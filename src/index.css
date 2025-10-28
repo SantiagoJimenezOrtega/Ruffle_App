@@ -12,3 +12,8 @@
   --color-dark-bg-secondary: #1e293b;
   --color-dark-text: #f1f5f9;
 }
+
+/* Dark mode support with class */
+.dark {
+  color-scheme: dark;
+}

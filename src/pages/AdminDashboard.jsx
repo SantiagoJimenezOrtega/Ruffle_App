@@ -48,7 +48,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -57,27 +57,27 @@ export default function AdminDashboard() {
           <h1 className="text-4xl font-bold text-white mb-2">
             Panel de Administración
           </h1>
-          <p className="text-white/80 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Bienvenido, {profile?.full_name}
           </p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Total Sorteos</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Sorteos</div>
             <div className="text-3xl font-bold text-white">{raffles.length}</div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Sorteos Activos</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Sorteos Activos</div>
             <div className="text-3xl font-bold text-white">
               {raffles.filter((r) => r.status === 'active').length}
             </div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Completados</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Completados</div>
             <div className="text-3xl font-bold text-white">
               {raffles.filter((r) => r.status === 'completed').length}
             </div>
@@ -88,20 +88,20 @@ export default function AdminDashboard() {
         <div className="mb-8">
           <Link
             to="/crear-sorteo"
-            className="inline-block px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-bold rounded-xl shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-200"
+            className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-xl shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-200"
           >
             + Crear Nuevo Sorteo
           </Link>
         </div>
 
         {/* Raffles List */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-white mb-6">
             Historial de Sorteos
           </h2>
 
           {loading && (
-            <p className="text-white/70 text-center py-8">Cargando sorteos...</p>
+            <p className="text-gray-600 dark:text-gray-400 text-center py-8">Cargando sorteos...</p>
           )}
 
           {error && (
@@ -111,7 +111,7 @@ export default function AdminDashboard() {
           )}
 
           {!loading && !error && raffles.length === 0 && (
-            <p className="text-white/70 text-center py-8">
+            <p className="text-gray-600 dark:text-gray-400 text-center py-8">
               No hay sorteos creados aún.
             </p>
           )}
@@ -128,7 +128,7 @@ export default function AdminDashboard() {
                       <h3 className="text-xl font-bold text-white mb-1">
                         {raffle.name}
                       </h3>
-                      <p className="text-white/70 text-sm">
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">
                         Creado el{' '}
                         {new Date(raffle.created_at).toLocaleDateString('es-ES', {
                           year: 'numeric',
@@ -141,11 +141,11 @@ export default function AdminDashboard() {
                   </div>
 
                   {raffle.description && (
-                    <p className="text-white/80 mb-3">{raffle.description}</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">{raffle.description}</p>
                   )}
 
                   {raffle.monthly_amount > 0 && (
-                    <p className="text-white/70 text-sm">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Monto mensual:{' '}
                       <span className="font-semibold text-white">
                         ${parseFloat(raffle.monthly_amount).toLocaleString()}
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
                   <div className="mt-4 flex gap-2">
                     <Link
                       to={`/sorteo/${raffle.id}`}
-                      className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-semibold transition-colors"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors"
                     >
                       Ver Detalles
                     </Link>

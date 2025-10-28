@@ -86,10 +86,10 @@ export default function RaffleDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Navbar />
         <div className="flex items-center justify-center h-96">
-          <p className="text-white text-xl">Cargando...</p>
+          <p className="text-gray-900 dark:text-white text-xl">Cargando...</p>
         </div>
       </div>
     );
@@ -97,11 +97,11 @@ export default function RaffleDetail() {
 
   if (error || !raffleData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Navbar />
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-500/20 border-l-4 border-red-500 rounded-lg p-4">
-            <p className="text-white font-semibold">Error: {error || 'Sorteo no encontrado'}</p>
+            <p className="text-gray-900 dark:text-white font-semibold">Error: {error || 'Sorteo no encontrado'}</p>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@ export default function RaffleDetail() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -133,21 +133,21 @@ export default function RaffleDetail() {
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">{raffle.name}</h1>
             {raffle.description && (
-              <p className="text-white/80 text-lg">{raffle.description}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-lg">{raffle.description}</p>
             )}
           </div>
 
           <div className="flex gap-3">
             <button
               onClick={copyPublicLink}
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors shadow-lg"
+              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-colors shadow-lg"
             >
               📋 Copiar Link Público
             </button>
             {isAdmin && (
               <button
                 onClick={handleDelete}
-                className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors shadow-lg"
+                className="px-6 py-3 bg-red-500 hover:bg-red-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-colors shadow-lg"
               >
                 Eliminar Sorteo
               </button>
@@ -157,26 +157,26 @@ export default function RaffleDetail() {
 
         {/* Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Estado</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Estado</div>
             <div className="text-xl font-bold text-white capitalize">{raffle.status}</div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Participantes</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Participantes</div>
             <div className="text-xl font-bold text-white">{participants.length}</div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Total Cupos</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Cupos</div>
             <div className="text-xl font-bold text-white">
               {participants.reduce((sum, p) => sum + p.slots, 0)}
             </div>
           </div>
 
           {raffle.monthly_amount > 0 && (
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-              <div className="text-white/70 text-sm mb-1">Monto Mensual</div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+              <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Monto Mensual</div>
               <div className="text-xl font-bold text-white">
                 ${parseFloat(raffle.monthly_amount).toLocaleString()}
               </div>
@@ -185,7 +185,7 @@ export default function RaffleDetail() {
         </div>
 
         {/* Participants List */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Participantes</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -205,14 +205,14 @@ export default function RaffleDetail() {
 
                   {months.length > 0 && (
                     <div className="mt-3">
-                      <p className="text-white/70 text-sm mb-2">Meses asignados:</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Meses asignados:</p>
                       <div className="flex flex-wrap gap-2">
                         {months
                           .sort((a, b) => a.month_index - b.month_index)
                           .map((month) => (
                             <span
                               key={month.id}
-                              className="px-3 py-1 bg-primary/30 border border-primary rounded text-white text-sm"
+                              className="px-3 py-1 bg-primary/30 border border-blue-500 rounded text-white text-sm"
                             >
                               {month.month_display}
                             </span>
@@ -227,11 +227,11 @@ export default function RaffleDetail() {
         </div>
 
         {/* Timeline Results */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-white">Calendario del Sorteo</h2>
             {isAdmin && (
-              <div className="text-sm text-white/80 bg-white/10 px-3 py-1.5 rounded-lg">
+              <div className="text-sm text-gray-600 dark:text-gray-400 bg-white/10 px-3 py-1.5 rounded-lg">
                 {selectedResult ? '👉 Selecciona otro mes para intercambiar' : 'Click en un mes para intercambiar'}
               </div>
             )}
@@ -239,7 +239,7 @@ export default function RaffleDetail() {
 
           {swapping && (
             <div className="mb-4 p-3 bg-yellow-500/20 border-l-4 border-yellow-500 rounded-lg">
-              <p className="text-white font-semibold">🔄 Intercambiando posiciones...</p>
+              <p className="text-gray-900 dark:text-white font-semibold">🔄 Intercambiando posiciones...</p>
             </div>
           )}
 
@@ -258,10 +258,10 @@ export default function RaffleDetail() {
                     } ${
                       isSelected
                         ? 'border-yellow-500 ring-4 ring-yellow-500/50 scale-105'
-                        : 'border-primary'
+                        : 'border-blue-500'
                     }`}
                   >
-                    <div className="text-primary font-bold text-lg mb-1">
+                    <div className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-1">
                       {result.month_display}
                     </div>
                     <div className="text-gray-800 font-semibold">
@@ -281,7 +281,7 @@ export default function RaffleDetail() {
         <div className="mt-8 text-center">
           <button
             onClick={() => navigate('/dashboard')}
-            className="text-white/80 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
           >
             ← Volver al dashboard
           </button>

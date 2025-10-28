@@ -36,11 +36,11 @@ export default function RaffleResults({ results, onReRaffle, showReRaffle = fals
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl">
       <h2 className="text-2xl font-bold text-white mb-6">Resultados del Sorteo</h2>
 
       <div className="mb-6 p-4 bg-green-500/20 border-l-4 border-green-500 rounded-lg">
-        <p className="text-white font-semibold">
+        <p className="text-gray-900 dark:text-white font-semibold">
           ✓ Sorteo realizado exitosamente! Ninguna persona tiene meses consecutivos.
         </p>
       </div>
@@ -49,7 +49,7 @@ export default function RaffleResults({ results, onReRaffle, showReRaffle = fals
         {showReRaffle && onReRaffle && (
           <button
             onClick={onReRaffle}
-            className="px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+            className="px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-gray-900 dark:text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
           >
             🎲 Resortear
           </button>
@@ -57,19 +57,19 @@ export default function RaffleResults({ results, onReRaffle, showReRaffle = fals
 
         <button
           onClick={exportToJSON}
-          className="px-5 py-2.5 bg-white/90 hover:bg-white text-primary font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+          className="px-5 py-2.5 bg-white/90 hover:bg-white text-blue-600 dark:text-blue-400 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
         >
           Exportar JSON
         </button>
         <button
           onClick={exportToCSV}
-          className="px-5 py-2.5 bg-white/90 hover:bg-white text-primary font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+          className="px-5 py-2.5 bg-white/90 hover:bg-white text-blue-600 dark:text-blue-400 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
         >
           Exportar CSV
         </button>
         <button
           onClick={printResults}
-          className="px-5 py-2.5 bg-white/90 hover:bg-white text-primary font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+          className="px-5 py-2.5 bg-white/90 hover:bg-white text-blue-600 dark:text-blue-400 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
         >
           Imprimir
         </button>
@@ -78,9 +78,9 @@ export default function RaffleResults({ results, onReRaffle, showReRaffle = fals
         {results.map((result, index) => (
           <div
             key={index}
-            className="bg-white/90 rounded-xl p-5 border-l-4 border-primary shadow-md hover:shadow-xl transition-all hover:-translate-y-1 duration-200"
+            className="bg-white/90 rounded-xl p-5 border-l-4 border-blue-500 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 duration-200"
           >
-            <div className="text-lg font-bold text-primary mb-2">
+            <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
               {result.display}
             </div>
             <div className="text-gray-800 font-semibold text-lg">

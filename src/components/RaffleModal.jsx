@@ -57,7 +57,7 @@ export default function RaffleModal({ isOpen, onClose, onSave, onPerformRaffle }
               value={raffleName}
               onChange={(e) => setRaffleName(e.target.value)}
               placeholder="Ej: Cadena Noviembre 2025"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             />
           </div>
 
@@ -70,7 +70,7 @@ export default function RaffleModal({ isOpen, onClose, onSave, onPerformRaffle }
               value={monthlyAmount}
               onChange={(e) => setMonthlyAmount(e.target.value)}
               placeholder="Ej: 1000000"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             />
           </div>
 
@@ -92,7 +92,7 @@ export default function RaffleModal({ isOpen, onClose, onSave, onPerformRaffle }
           <button
             onClick={handleSaveAndPerform}
             disabled={saving || !raffleName.trim()}
-            className="flex-1 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {saving ? 'Guardando...' : 'Realizar y Guardar'}
           </button>

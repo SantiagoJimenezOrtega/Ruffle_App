@@ -96,15 +96,15 @@ export default function CreateRaffle() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-white mb-3 drop-shadow-lg">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-3 drop-shadow-lg">
             Crear Nuevo Sorteo
           </h1>
-          <p className="text-white/80 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Sistema de asignación de meses con restricción de no consecutivos
           </p>
         </div>
@@ -120,7 +120,7 @@ export default function CreateRaffle() {
             <div className="flex justify-center">
               <button
                 onClick={handleOpenModal}
-                className="px-10 py-4 bg-primary hover:bg-primary-dark text-white text-xl font-bold rounded-xl shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-200"
+                className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white text-xl font-bold rounded-xl shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-200"
               >
                 🎲 Realizar Sorteo
               </button>
@@ -129,9 +129,9 @@ export default function CreateRaffle() {
 
           {success && (
             <div className="bg-green-500/20 border-l-4 border-green-500 rounded-lg p-4">
-              <p className="text-white font-semibold">✅ {success}</p>
+              <p className="text-gray-900 dark:text-white font-semibold">✅ {success}</p>
               {savedRaffleId && (
-                <p className="text-white/80 text-sm mt-1">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
                   ID del sorteo: {savedRaffleId}
                 </p>
               )}
@@ -140,7 +140,7 @@ export default function CreateRaffle() {
 
           {error && (
             <div className="bg-red-500/20 border-l-4 border-red-500 rounded-lg p-4">
-              <p className="text-white font-semibold">❌ {error}</p>
+              <p className="text-gray-900 dark:text-white font-semibold">❌ {error}</p>
             </div>
           )}
 

@@ -26,9 +26,9 @@ export default function PublicRaffleView() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="flex items-center justify-center h-screen">
-          <p className="text-white text-xl">Cargando sorteo...</p>
+          <p className="text-gray-900 dark:text-white text-xl">Cargando sorteo...</p>
         </div>
       </div>
     );
@@ -36,15 +36,15 @@ export default function PublicRaffleView() {
 
   if (error || !raffleData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-500/20 border-l-4 border-red-500 rounded-lg p-4">
-            <p className="text-white font-semibold">Error: {error || 'Sorteo no encontrado'}</p>
+            <p className="text-gray-900 dark:text-white font-semibold">Error: {error || 'Sorteo no encontrado'}</p>
           </div>
           <div className="mt-4 text-center">
             <button
               onClick={() => navigate('/login')}
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
             >
               ← Ir a Login
             </button>
@@ -70,15 +70,15 @@ export default function PublicRaffleView() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Public Header */}
-      <div className="bg-white/10 backdrop-blur-md border-b border-white/20">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-white">Sorteo Público</h1>
             <button
               onClick={() => navigate('/login')}
-              className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors"
+              className="px-4 py-2 bg-white/20 hover:bg-white/30 text-gray-900 dark:text-white font-semibold rounded-lg transition-colors"
             >
               Iniciar Sesión
             </button>
@@ -91,10 +91,10 @@ export default function PublicRaffleView() {
         <div className="mb-8">
           <h2 className="text-4xl font-bold text-white mb-2">{raffle.name}</h2>
           {raffle.description && (
-            <p className="text-white/80 text-lg">{raffle.description}</p>
+            <p className="text-gray-600 dark:text-gray-400 text-lg">{raffle.description}</p>
           )}
           <div className="mt-3 inline-block px-3 py-1 bg-blue-500/30 border border-blue-400 rounded-lg">
-            <p className="text-white/90 text-sm">
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
               👁️ Modo Visitante - Solo Lectura
             </p>
           </div>
@@ -102,26 +102,26 @@ export default function PublicRaffleView() {
 
         {/* Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Estado</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Estado</div>
             <div className="text-xl font-bold text-white capitalize">{raffle.status}</div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Participantes</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Participantes</div>
             <div className="text-xl font-bold text-white">{participants.length}</div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-            <div className="text-white/70 text-sm mb-1">Total Cupos</div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Cupos</div>
             <div className="text-xl font-bold text-white">
               {participants.reduce((sum, p) => sum + p.slots, 0)}
             </div>
           </div>
 
           {raffle.monthly_amount > 0 && (
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-              <div className="text-white/70 text-sm mb-1">Monto Mensual</div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+              <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">Monto Mensual</div>
               <div className="text-xl font-bold text-white">
                 ${parseFloat(raffle.monthly_amount).toLocaleString()}
               </div>
@@ -130,7 +130,7 @@ export default function PublicRaffleView() {
         </div>
 
         {/* Participants List */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Participantes</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -150,14 +150,14 @@ export default function PublicRaffleView() {
 
                   {months.length > 0 && (
                     <div className="mt-3">
-                      <p className="text-white/70 text-sm mb-2">Meses asignados:</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Meses asignados:</p>
                       <div className="flex flex-wrap gap-2">
                         {months
                           .sort((a, b) => a.month_index - b.month_index)
                           .map((month) => (
                             <span
                               key={month.id}
-                              className="px-3 py-1 bg-primary/30 border border-primary rounded text-white text-sm"
+                              className="px-3 py-1 bg-primary/30 border border-blue-500 rounded text-white text-sm"
                             >
                               {month.month_display}
                             </span>
@@ -172,7 +172,7 @@ export default function PublicRaffleView() {
         </div>
 
         {/* Timeline Results */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-white mb-6">Calendario del Sorteo</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -183,9 +183,9 @@ export default function PublicRaffleView() {
                 return (
                   <div
                     key={result.id}
-                    className="bg-white/90 rounded-xl p-4 border-l-4 border-primary shadow-md"
+                    className="bg-white/90 rounded-xl p-4 border-l-4 border-blue-500 shadow-md"
                   >
-                    <div className="text-primary font-bold text-lg mb-1">
+                    <div className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-1">
                       {result.month_display}
                     </div>
                     <div className="text-gray-800 font-semibold">
@@ -205,7 +205,7 @@ export default function PublicRaffleView() {
         <div className="mt-8 text-center">
           <button
             onClick={() => navigate('/login')}
-            className="text-white/80 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
           >
             ← Iniciar sesión para ver más opciones
           </button>

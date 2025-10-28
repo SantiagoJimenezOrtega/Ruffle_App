@@ -41,12 +41,12 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-md w-full">
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-white mb-2">Crear Cuenta</h1>
-            <p className="text-white/80">Regístrate para continuar</p>
+            <p className="text-gray-600 dark:text-gray-400">Regístrate para continuar</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -65,7 +65,7 @@ export default function Register() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 placeholder="Juan Pérez"
               />
             </div>
@@ -79,7 +79,7 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 placeholder="tu@email.com"
               />
             </div>
@@ -93,7 +93,7 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 placeholder="••••••••"
               />
             </div>
@@ -107,7 +107,7 @@ export default function Register() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-white/90 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 placeholder="••••••••"
               />
             </div>
@@ -115,18 +115,18 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white font-bold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {loading ? 'Registrando...' : 'Crear Cuenta'}
             </button>
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-white/80 text-sm">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
               ¿Ya tienes cuenta?{' '}
               <Link
                 to="/login"
-                className="text-white font-semibold hover:underline"
+                className="text-gray-900 dark:text-white font-semibold hover:underline"
               >
                 Inicia sesión aquí
               </Link>
@@ -137,7 +137,7 @@ export default function Register() {
         <div className="mt-6 text-center">
           <Link
             to="/"
-            className="text-white/80 hover:text-white transition-colors text-sm"
+            className="text-gray-600 dark:text-gray-400 hover:text-white transition-colors text-sm"
           >
             ← Volver al inicio
           </Link>

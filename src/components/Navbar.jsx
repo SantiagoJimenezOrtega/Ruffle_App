@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/dashboard" className="flex items-center">
-              <span className="text-gray-900 dark:text-white text-xl font-bold">
+              <span className="text-gray-900 dark:text-gray-900 dark:text-white text-xl font-bold">
                 Cadena de Ahorro
               </span>
             </Link>

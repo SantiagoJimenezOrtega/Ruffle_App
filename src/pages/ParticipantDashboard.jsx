@@ -27,24 +27,24 @@ export default function ParticipantDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">Mi Dashboard</h1>
-          <p className="text-white/80 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Bienvenido, {profile?.full_name}
           </p>
         </div>
 
         {/* Info Card */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-3">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
             ¿Cómo funciona la cadena de ahorro?
           </h2>
-          <ul className="text-white/90 space-y-2">
+          <ul className="text-gray-700 dark:text-gray-300 space-y-2">
             <li className="flex items-start">
               <span className="mr-2">•</span>
               <span>Cada participante recibe un mes asignado para recibir el ahorro</span>
@@ -65,13 +65,13 @@ export default function ParticipantDashboard() {
         </div>
 
         {/* Raffles List */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-white mb-6">
             Sorteos Activos
           </h2>
 
           {loading && (
-            <p className="text-white/70 text-center py-8">Cargando sorteos...</p>
+            <p className="text-gray-600 dark:text-gray-400 text-center py-8">Cargando sorteos...</p>
           )}
 
           {error && (
@@ -82,7 +82,7 @@ export default function ParticipantDashboard() {
 
           {!loading && !error && raffles.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-white/70 text-lg mb-4">
+              <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">
                 No hay sorteos activos en este momento.
               </p>
               <p className="text-white/60 text-sm">
@@ -108,13 +108,13 @@ export default function ParticipantDashboard() {
                   </div>
 
                   {raffle.description && (
-                    <p className="text-white/80 mb-3 text-sm">
+                    <p className="text-gray-600 dark:text-gray-400 mb-3 text-sm">
                       {raffle.description}
                     </p>
                   )}
 
                   {raffle.monthly_amount > 0 && (
-                    <p className="text-white/70 text-sm mb-4">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                       Monto mensual:{' '}
                       <span className="font-semibold text-white text-lg">
                         ${parseFloat(raffle.monthly_amount).toLocaleString()}
@@ -133,7 +133,7 @@ export default function ParticipantDashboard() {
 
                   <Link
                     to={`/sorteo/${raffle.id}`}
-                    className="inline-block px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-semibold transition-colors"
+                    className="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors"
                   >
                     Ver Detalles
                   </Link>

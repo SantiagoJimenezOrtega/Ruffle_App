@@ -18,8 +18,8 @@ function DashboardRouter() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center">
-        <p className="text-white text-xl">Cargando perfil...</p>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <p className="text-gray-900 dark:text-gray-900 dark:text-white text-xl">Cargando perfil...</p>
       </div>
     );
   }
