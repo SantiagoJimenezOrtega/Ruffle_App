@@ -1,141 +1,82 @@
-import { useState } from 'react';
-import ParticipantForm from './components/ParticipantForm';
-import RaffleResults from './components/RaffleResults';
-import RaffleModal from './components/RaffleModal';
-import { performRaffle } from './utils/raffleLogic';
-import { saveCompleteRaffle } from './services/raffleService';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AdminDashboard from './pages/AdminDashboard';
+import ParticipantDashboard from './pages/ParticipantDashboard';
+import CreateRaffle from './pages/CreateRaffle';
+import RaffleDetail from './pages/RaffleDetail';
+
+function DashboardRouter() {
+  const { profile, loading } = useAuth();
+
+  console.log('DashboardRouter - Profile:', profile);
+  console.log('DashboardRouter - Loading:', loading);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center">
+        <p className="text-white text-xl">Cargando perfil...</p>
+      </div>
+    );
+  }
+
+  if (profile?.role === 'admin') {
+    console.log('Redirecting to Admin Dashboard');
+    return <AdminDashboard />;
+  }
+
+  console.log('Redirecting to Participant Dashboard');
+  return <ParticipantDashboard />;
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardRouter />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/crear-sorteo"
+        element={
+          <ProtectedRoute requireAdmin>
+            <CreateRaffle />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/sorteo/:id"
+        element={
+          <ProtectedRoute>
+            <RaffleDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
+}
 
 function App() {
-  const [participants, setParticipants] = useState([]);
-  const [raffleResults, setRaffleResults] = useState(null);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [savedRaffleId, setSavedRaffleId] = useState(null);
-
-  const handleAddParticipant = (participant) => {
-    setParticipants([...participants, participant]);
-    setRaffleResults(null);
-    setError(null);
-    setSuccess(null);
-  };
-
-  const handleRemoveParticipant = (id) => {
-    setParticipants(participants.filter(p => p.id !== id));
-    setRaffleResults(null);
-    setError(null);
-    setSuccess(null);
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const performRaffleLogic = () => {
-    return performRaffle(participants);
-  };
-
-  const handleSaveRaffle = async ({ name, monthlyAmount, results }) => {
-    try {
-      setError(null);
-      setSuccess(null);
-
-      const raffleInfo = {
-        name: name,
-        monthlyAmount: monthlyAmount,
-        startMonth: 10, // November (0-indexed)
-        startYear: 2025
-      };
-
-      const savedData = await saveCompleteRaffle(raffleInfo, participants, results);
-
-      setRaffleResults(results);
-      setSavedRaffleId(savedData.raffle.id);
-      setSuccess(`¡Sorteo "${name}" guardado exitosamente en la base de datos!`);
-
-      // Scroll to results
-      setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, 100);
-    } catch (error) {
-      console.error('Error saving raffle:', error);
-      setError('Error al guardar el sorteo: ' + error.message);
-    }
-  };
-
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-white mb-3 drop-shadow-lg">
-            Sorteo de Cadena de Ahorro
-          </h1>
-          <p className="text-white/80 text-lg">
-            Sistema de asignación de meses con restricción de no consecutivos
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          <ParticipantForm
-            participants={participants}
-            onAddParticipant={handleAddParticipant}
-            onRemoveParticipant={handleRemoveParticipant}
-          />
-
-          {participants.length > 0 && (
-            <div className="flex justify-center">
-              <button
-                onClick={handleOpenModal}
-                className="px-10 py-4 bg-primary hover:bg-primary-dark text-white text-xl font-bold rounded-xl shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-200"
-              >
-                🎲 Realizar Sorteo
-              </button>
-            </div>
-          )}
-
-          {success && (
-            <div className="bg-green-500/20 border-l-4 border-green-500 rounded-lg p-4">
-              <p className="text-white font-semibold">✅ {success}</p>
-              {savedRaffleId && (
-                <p className="text-white/80 text-sm mt-1">
-                  ID del sorteo: {savedRaffleId}
-                </p>
-              )}
-            </div>
-          )}
-
-          {error && (
-            <div className="bg-red-500/20 border-l-4 border-red-500 rounded-lg p-4">
-              <p className="text-white font-semibold">❌ {error}</p>
-            </div>
-          )}
-
-          {raffleResults && (
-            <div id="results-section">
-              <RaffleResults results={raffleResults} />
-            </div>
-          )}
-        </div>
-
-        <footer className="mt-12 text-center text-white/60 text-sm">
-          <p>Sistema de Cadena de Ahorro - 2025</p>
-        </footer>
-      </div>
-
-      <RaffleModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onPerformRaffle={performRaffleLogic}
-        onSave={handleSaveRaffle}
-      />
-    </div>
+    <Router>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </Router>
   );
 }
 
