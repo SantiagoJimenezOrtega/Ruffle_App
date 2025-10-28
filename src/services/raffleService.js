@@ -64,7 +64,7 @@ export async function saveRaffleResults(raffleId, results) {
     month_display: r.display,
     slot_number: r.slotNumber,
     total_slots: r.totalSlots,
-    month_index: r.monthIndex
+    month_index: r.index
   }));
 
   const { data, error } = await supabase

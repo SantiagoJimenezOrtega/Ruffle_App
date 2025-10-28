@@ -24,8 +24,7 @@ CREATE TABLE participants (
   phone TEXT,
   slots INTEGER NOT NULL CHECK (slots IN (1, 2)),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(raffle_id, name)
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Tabla: raffle_results (Resultados del sorteo)
