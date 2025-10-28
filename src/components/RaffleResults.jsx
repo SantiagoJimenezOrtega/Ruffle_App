@@ -1,4 +1,4 @@
-export default function RaffleResults({ results }) {
+export default function RaffleResults({ results, onReRaffle, showReRaffle = false }) {
   const exportToJSON = () => {
     const data = {
       fecha_sorteo: new Date().toISOString(),
@@ -46,6 +46,15 @@ export default function RaffleResults({ results }) {
       </div>
 
       <div className="flex gap-3 mb-6 flex-wrap">
+        {showReRaffle && onReRaffle && (
+          <button
+            onClick={onReRaffle}
+            className="px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+          >
+            🎲 Resortear
+          </button>
+        )}
+
         <button
           onClick={exportToJSON}
           className="px-5 py-2.5 bg-white/90 hover:bg-white text-primary font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
@@ -65,7 +74,6 @@ export default function RaffleResults({ results }) {
           Imprimir
         </button>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {results.map((result, index) => (
           <div

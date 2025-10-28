@@ -180,3 +180,28 @@ export async function deleteRaffle(raffleId) {
 
   if (error) throw error;
 }
+
+/**
+ * Intercambia las asignaciones de mes entre dos resultados
+ * @param {string} resultId1 - ID del primer resultado
+ * @param {string} resultId2 - ID del segundo resultado
+ * @returns {Promise<void>}
+ */
+export async function swapRaffleResults(resultId1, resultId2) {
+  console.log('swapRaffleResults - Llamando función RPC con IDs:', resultId1, resultId2);
+
+  // Llamar a la función SQL que maneja el swap con constraint DEFERRED
+  const { data, error } = await supabase
+    .rpc('swap_raffle_results', {
+      result_id_1: resultId1,
+      result_id_2: resultId2
+    });
+
+  if (error) {
+    console.error('Error en swap RPC:', error);
+    throw error;
+  }
+
+  console.log('Swap completado exitosamente:', data);
+  return data;
+}

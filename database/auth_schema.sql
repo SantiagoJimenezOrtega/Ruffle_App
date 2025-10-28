@@ -156,6 +156,16 @@ CREATE POLICY "Admins can insert raffle results"
     )
   );
 
+-- Solo admins pueden actualizar resultados (para intercambiar posiciones)
+CREATE POLICY "Admins can update raffle results"
+  ON raffle_results FOR UPDATE
+  USING (
+    EXISTS (
+      SELECT 1 FROM profiles
+      WHERE id = auth.uid() AND role = 'admin'
+    )
+  );
+
 -- Solo admins pueden eliminar resultados
 CREATE POLICY "Admins can delete raffle results"
   ON raffle_results FOR DELETE

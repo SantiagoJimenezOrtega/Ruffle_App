@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -7,6 +8,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import ParticipantDashboard from './pages/ParticipantDashboard';
 import CreateRaffle from './pages/CreateRaffle';
 import RaffleDetail from './pages/RaffleDetail';
+import PublicRaffleView from './pages/PublicRaffleView';
 
 function DashboardRouter() {
   const { profile, loading } = useAuth();
@@ -36,6 +38,9 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      {/* Public route for guests */}
+      <Route path="/ver/:id" element={<PublicRaffleView />} />
 
       <Route
         path="/dashboard"
@@ -73,9 +78,11 @@ function AppRoutes() {
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </ThemeProvider>
     </Router>
   );
 }

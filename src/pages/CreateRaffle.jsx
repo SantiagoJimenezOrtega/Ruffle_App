@@ -42,6 +42,23 @@ export default function CreateRaffle() {
     return performRaffle(participants);
   };
 
+  const handleReRaffle = () => {
+    const result = performRaffle(participants);
+    if (result.success) {
+      setRaffleResults(result.results);
+      setError(null);
+      // Scroll to results
+      setTimeout(() => {
+        document.getElementById('results-section')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
+    } else {
+      setError(result.error);
+    }
+  };
+
   const handleSaveRaffle = async ({ name, monthlyAmount, results }) => {
     try {
       setError(null);
@@ -129,7 +146,11 @@ export default function CreateRaffle() {
 
           {raffleResults && (
             <div id="results-section">
-              <RaffleResults results={raffleResults} />
+              <RaffleResults
+                results={raffleResults}
+                onReRaffle={handleReRaffle}
+                showReRaffle={!savedRaffleId}
+              />
             </div>
           )}
         </div>
